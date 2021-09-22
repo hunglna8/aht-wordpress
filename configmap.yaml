@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dbconfig
+data:
+  FOO_ENV: bar
+  HELLO_ENV: world

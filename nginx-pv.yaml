@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nginx-pv
+  labels:
+    app: wordpress
+spec:
+  storageClassName: nginxpv
+  capacity:
+    storage: 20Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/volume/nginxpv"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-pv-claim
+  labels:
+    app: wordpress
+spec:
+  storageClassName: nginxpv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+
