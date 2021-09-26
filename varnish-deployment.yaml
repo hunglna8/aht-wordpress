@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: varnish
+  labels:
+    app: wordpress
+spec:
+  ports:
+    - port: 6081
+      #nodePort: 30574
+  selector:
+    app: wordpress
+    tier: varnish
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: varnish
+  labels:
+    app: wordpress
+spec:
+        # replicas: 2
+  selector:
+    matchLabels:
+      app: wordpress
+      tier: varnish
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: wordpress
+        tier: varnish
+    spec:
+      containers:
+      - image: lengochung1/wordpress:varnish3
+        #image: lengochung1/wordpress:nginx8080
+        #emcniece/nginx-cache-purge-wp:latest
+        name: nginx
+        ports:
+        - containerPort: 6081
+          name: varnish
+          #volumeMounts:
+          #- name: wordpress-persistent-storage
+          #mountPath: /var/www/html
+          #volumes:
+          #- name: wordpress-persistent-storage
+          #persistentVolumeClaim:
+          #claimName: wp-pv-claim
+

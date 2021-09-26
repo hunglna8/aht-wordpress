@@ -7,11 +7,11 @@ metadata:
 spec:
   ports:
     - port: 8080
-      nodePort: 30574
+      #nodePort: 30574
   selector:
     app: wordpress
     tier: nginx
-  type: NodePort
+  clusterIP: None
 ---
 apiVersion: apps/v1
 kind: Deployment

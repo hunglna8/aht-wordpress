@@ -1,10 +1,11 @@
-secretGenerator:
-- name: mysql-pass
-  literals:
-  - password=aht12345
+#secretGenerator:
+#- name: mysql-pass
+#  literals:
+#  - password=aht12345
 resources:
-  - mysql-deployment.yaml
+        #- mysql-deployment.yaml
     #- phpmyadmin-deploy.yaml
-  - wordpress-deployment.yaml
+    #- wordpress-deployment.yaml
     #- redis-deployment.yaml
   - nginx-deployment.yaml
+  - varnish-deployment.yaml
